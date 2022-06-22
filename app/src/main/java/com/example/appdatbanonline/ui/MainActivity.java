@@ -2,6 +2,7 @@ package com.example.appdatbanonline.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -9,13 +10,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
@@ -75,8 +81,45 @@ public class MainActivity extends AppCompatActivity {
         getdulieunhahang();
         getdulieumenu();
         CatchonItemListView();
+        getdateidtaikhoan();
+    }
+
+    private void timkiem(String query) {
+        DataClient dataClient = APIUtils.getData();
+        Call<List<Nhahang>> callback = dataClient.timkiem(query);
+        callback.enqueue(new Callback<List<Nhahang>>() {
+            @Override
+            public void onResponse(Call<List<Nhahang>> call, Response<List<Nhahang>> response) {
+                ArrayList<Nhahang> mangnhahang = (ArrayList<Nhahang>) response.body();
+                if (mangnhahang.size()>0){
+                    NhahangAdapter = new nhahangAdapter(mangnhahang, getApplicationContext(), new clicknhahang() {
+                        @Override
+                        public void onclickitemnhahang(Nhahang nhahang) {
+                            onclicknhahang(nhahang);
+                        }
+                    });
+                    rcv_nhahang.setHasFixedSize(true);
+                    LinearLayoutManager linearLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+//                linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rcv_nhahang.setLayoutManager(linearLayoutManager);
+                    rcv_nhahang.setAdapter(NhahangAdapter);
+                    NhahangAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Nhahang>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getdateidtaikhoan() {
+
 
     }
+
+
     private void CatchonItemListView() {
         lvmenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         Intent intent1 = new Intent(MainActivity.this,donhang.class);
+                        Intent intent5 = getIntent();
+                        ArrayList<Taikhoan> listtaikhoan = intent5.getParcelableArrayListExtra("mangtaikhoang");
+                        intent1.putExtra("mangidtaikhoan",listtaikhoan);
                         startActivity(intent1);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -113,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void getdulieumenu() {
         ArrayList<menu> menuArrayList = new ArrayList<menu>();
-        menuArrayList.add(new menu(R.drawable.ic_baseline_home_24,"Trang Chu"));
-        menuArrayList.add(new menu(R.drawable.ic_baseline_shopping_cart_24,"Don Hang"));
-        menuArrayList.add(new menu(R.drawable.ic_baseline_love_24,"Yeu Thich"));
-        menuArrayList.add(new menu(R.drawable.ic_baseline_account_circle_24,"Ca Nhan"));
+        menuArrayList.add(new menu(R.drawable.ic_baseline_home_24,"Trang chủ"));
+        menuArrayList.add(new menu(R.drawable.ic_baseline_shopping_cart_24,"Lịch sử"));
+        menuArrayList.add(new menu(R.drawable.ic_baseline_love_24,"Yêu thích"));
+        menuArrayList.add(new menu(R.drawable.ic_baseline_account_circle_24,"Cá nhân"));
         MenuAdapter = new menuAdapter(this,0,menuArrayList);
         lvmenu.setAdapter(MenuAdapter);
 
@@ -177,12 +223,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void onClickmonan(Monan monan){
+        Intent intent2 = getIntent();
+        ArrayList<Taikhoan> arraylisttaikhoan = intent2.getParcelableArrayListExtra("mangtaikhoang");
         Intent intent = new Intent(this,ds_nhahang.class);
+        intent.putExtra("idtaikhoan",arraylisttaikhoan);
         intent.putExtra("monan",monan);
         startActivity(intent);
     }
     private void onclicknhahang(Nhahang nhahang){
+        Intent intent2 = getIntent();
+        ArrayList<Taikhoan> arraylisttaikhoan = intent2.getParcelableArrayListExtra("mangtaikhoang");
         Intent intent = new Intent(this,chitietnhahang.class);
+        intent.putExtra("idtaikhoan",arraylisttaikhoan);
         intent.putExtra("nhahang",nhahang);
         startActivity(intent);
     }
@@ -222,10 +274,31 @@ public class MainActivity extends AppCompatActivity {
     private void anhxa() {
         toolbar = (Toolbar) findViewById(R.id.tbmhc);
         viewFlipper = (ViewFlipper) findViewById(R.id.vlp);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlayout);
         rcv_monan = (RecyclerView) findViewById(R.id.rcv_monan);
         rcv_nhahang= (RecyclerView) findViewById(R.id.rcv_nhahang);
         lvmenu = (ListView) findViewById(R.id.lvmenu);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_view,menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                timkiem(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
     }
 }

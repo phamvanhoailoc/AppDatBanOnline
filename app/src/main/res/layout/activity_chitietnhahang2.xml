@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.chitietnhahang"
     android:orientation="vertical"
-    >
+    tools:context=".ui.chitietnhahang2">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarchitietnhahang"
+        android:id="@+id/toolbarchitietnhahang1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="Chi tiết nhà hàng"
@@ -28,7 +27,7 @@
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:id="@+id/imgnhahang"
+            android:id="@+id/imgnhahang1"
             android:layout_margin="5dp"
             />
         <ImageView
@@ -36,52 +35,52 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_baseline_love_24"
             android:layout_gravity="top|right"
-            android:id="@+id/imgtim"/>
+            android:id="@+id/imgtim1"/>
         <Button
             android:layout_width="150dp"
-            android:id="@+id/btndatban"
+            android:id="@+id/btndatban1"
             android:layout_height="50dp"
             android:text="Đặt bàn"
             android:layout_gravity="top|right"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvtennhahang"
+            android:id="@+id/tvtennhahang1"
             android:text="nha hang sushi"
             android:textSize="20sp"
             android:textColor="#000"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvdiachi"
+            android:id="@+id/tvdiachi1"
             android:text="dia chi"
             android:textSize="15sp"
             android:textColor="#000"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvsdt"
+            android:id="@+id/tvsdt1"
             android:text="so dien thoai"
             android:textSize="15sp"
             android:textColor="#000"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvgia"
+            android:id="@+id/tvgia1"
             android:text="gia"
             android:textSize="15sp"
             android:textColor="#000"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvgiomocua"
+            android:id="@+id/tvgiomocua1"
             android:text="gio mo cua"
             android:textSize="15sp"
             android:textColor="#000"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvgiodongcua"
+            android:id="@+id/tvgiodongcua1"
             android:text="gio dong cua"
             android:textSize="15sp"
             android:textColor="#000"/>
@@ -108,7 +107,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvgioithieu"
+                    android:id="@+id/tvgioithieu1"
                     android:text="Giới thiệu"
                     android:textSize="20sp"
                     android:textColor="#000"/>
@@ -117,13 +116,13 @@
                     android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:id="@+id/imgmenunhahang"
+                    android:id="@+id/imgmenunhahang1"
                     android:layout_margin="5dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvluuy"
+                    android:id="@+id/tvluuy1"
                     android:text="Lưu ý"
                     android:textSize="20sp"
                     android:textColor="#000"/>
@@ -132,7 +131,7 @@
                     android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:id="@+id/imgbando"
+                    android:id="@+id/imgbando1"
                     android:layout_margin="5dp"
                     />
             </LinearLayout>
@@ -140,6 +139,4 @@
 
 
     </LinearLayout>
-
-
 </LinearLayout>

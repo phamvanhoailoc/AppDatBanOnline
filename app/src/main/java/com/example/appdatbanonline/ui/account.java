@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdatbanonline.R;
@@ -27,17 +28,28 @@ public class account extends AppCompatActivity {
     Button btndangxuat,btnupdate;
     EditText edttaikhoan,edtmatkhau;
     String matkhau;
+    TextView tvdoimatkhau;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         anhxa();
         Init();
+        clickdoimatkhau();
         btndangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(account.this, dangnhap.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void clickdoimatkhau() {
+        tvdoimatkhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edtmatkhau.setFocusableInTouchMode(true);
             }
         });
     }
@@ -84,5 +96,8 @@ public class account extends AppCompatActivity {
         edttaikhoan = (EditText) findViewById(R.id.edttaikhoan);
         edtmatkhau = (EditText) findViewById(R.id.edtmatkhau);
         btnupdate = (Button) findViewById(R.id.btnupdate);
+        tvdoimatkhau = (TextView) findViewById(R.id.tvdoimatkhau);
+        edtmatkhau.setFocusable(false);
+        edttaikhoan.setFocusable(false);
     }
 }

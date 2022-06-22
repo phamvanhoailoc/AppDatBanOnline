@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.appdatbanonline.R;
 import com.example.appdatbanonline.retofit2.APIUtils;
 import com.example.appdatbanonline.retofit2.DataClient;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.nio.charset.StandardCharsets;
 
@@ -19,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class dangky extends AppCompatActivity {
-    EditText edttaikhoan,edtmatkhau,edtmatkhauruturn;
+    TextInputLayout tilsdtdk,tilmatkhaudk,tilmatkhaudklai;
     Button btndangky;
     String taikhoan;
     String matkhau;
@@ -34,10 +35,10 @@ public class dangky extends AppCompatActivity {
             btndangky.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    taikhoan = edttaikhoan.getText().toString();
-                    matkhau = edtmatkhauruturn.getText().toString();
-                    matkhaureturn = edtmatkhau.getText().toString();
-                        if(taikhoan.length() > 0 && matkhau.length() > 0 && matkhaureturn.length() > 0){
+                    taikhoan = tilsdtdk.getEditText().getText().toString();
+                    matkhau = tilmatkhaudk.getEditText().getText().toString();
+                    matkhaureturn = tilmatkhaudklai.getEditText().getText().toString();
+                        if(taikhoan.length() > 8 && matkhau.length() > 0 && matkhaureturn.length() > 0){
                             if (matkhau.equals(matkhaureturn)){
                                 DataClient insertdata = APIUtils.getData();
                                 retrofit2.Call<String> callback = insertdata.InsertData(taikhoan,matkhau);
@@ -56,18 +57,18 @@ public class dangky extends AppCompatActivity {
                                     }
                                 });
                             }else {
-                                Toast.makeText(dangky.this,"hay nhap mat khau trung nhau",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(dangky.this,"Hãy 2 mật khẩu giống nhau",Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                                Toast.makeText(dangky.this,"hay nhap du thong tin",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(dangky.this,"Số điện thoại không hợp lệ",Toast.LENGTH_SHORT).show();
                         }
                 }
             });
     }
     private void anhxa() {
-        edttaikhoan = findViewById(R.id.edtusername);
-        edtmatkhau = findViewById(R.id.edtpassword);
-        edtmatkhauruturn = findViewById(R.id.edtreturnpassword);
+        tilsdtdk = findViewById(R.id.tilsdtdk);
+        tilmatkhaudk = findViewById(R.id.tilmatkhaudk);
+        tilmatkhaudklai = findViewById(R.id.tilmatkhaudklai);
         btndangky = findViewById(R.id.btndangky);
     }
 }

@@ -14,7 +14,7 @@
             android:id="@+id/tbnhahang"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Nha Hang"
+            app:title="Danh sách nhà hàng theo món ăn"
             android:background="#BFACC3">
         </androidx.appcompat.widget.Toolbar>
         <LinearLayout

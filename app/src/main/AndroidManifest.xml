@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDatBanOnline">
         <activity
+            android:name=".ui.chitietnhahang2"
+            android:exported="false" />
+        <activity
+            android:name=".ui.datban1"
+            android:exported="false" />
+        <activity
+            android:name=".ui.datban"
+            android:exported="true" />
+        <activity
             android:name=".ui.chitietnhahang"
             android:exported="false" />
         <activity
@@ -40,7 +49,7 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

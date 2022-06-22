@@ -2,6 +2,7 @@ package com.example.appdatbanonline.retofit2;
 
 
 import com.example.appdatbanonline.model.Chitietnhahang;
+import com.example.appdatbanonline.model.Datban;
 import com.example.appdatbanonline.model.Monan;
 import com.example.appdatbanonline.model.Nhahang;
 import com.example.appdatbanonline.model.Taikhoan;
@@ -13,7 +14,6 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 
 public interface DataClient {
     @FormUrlEncoded
@@ -50,5 +50,28 @@ public interface DataClient {
     @FormUrlEncoded
     @POST("chitietnhahang.php")
     Call<List<Chitietnhahang>> dschitietnhahang(
-            @Field("id") String idnhahang);
+            @Field("idnhahang") String idnhahang);
+    @FormUrlEncoded
+    @POST("datban.php")
+    Call<List<Datban>> datban(
+            @Field("idtaikhoan") String idtaikhoan
+            );
+    @FormUrlEncoded
+    @POST("insertdatban.php")
+    Call<String> InsertDatban(@Field("idnhahang") String idnhahang
+            ,@Field("idtaikhoan") String idtaikhoan
+            ,@Field("ngayden") String ngayden
+            ,@Field("gioden") String gioden
+            ,@Field("nguoilon") String nguoilon
+            ,@Field("treem") String treem
+            ,@Field("ghichu") String ghichu);
+    @FormUrlEncoded
+    @POST("deletedatban.php")
+    Call<String> deletedatban(
+            @Field("iddatban") String iddatban
+    );
+    @FormUrlEncoded
+    @POST("searchnhahang.php")
+    Call<List<Nhahang>> timkiem(
+            @Field("tennhahang") String tennhahang);
 }

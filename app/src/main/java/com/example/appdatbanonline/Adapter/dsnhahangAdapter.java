@@ -1,9 +1,11 @@
 package com.example.appdatbanonline.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,9 +42,9 @@ public class dsnhahangAdapter  extends RecyclerView.Adapter<dsnhahangAdapter.dsn
                 .into(holder.imgnhahang);
         holder.tvtennhahang.setText(nhahang.getTennhahang());
         holder.tvdiachi.setText(nhahang.getDiachinhahang());
-        holder.tvgia.setText("Gia: "+nhahang.getGia()+" D");
-        holder.tvgiomocua.setText("OPEN "+nhahang.getGiomocua());
-        holder.tvgiodongcua.setText("CLOSE "+nhahang.getGiodongcua());
+        holder.tvgia.setText("Giá: "+nhahang.getGia()+" VND");
+        holder.tvgiomocua.setText("Giờ mở cửa: "+nhahang.getGiomocua());
+        holder.tvgiodongcua.setText("Giờ đóng cửa: "+nhahang.getGiodongcua());
     }
 
     @Override
@@ -52,6 +54,7 @@ public class dsnhahangAdapter  extends RecyclerView.Adapter<dsnhahangAdapter.dsn
     public class dsnhahangViewHolder extends RecyclerView.ViewHolder{
         public ImageView imgnhahang;
         public TextView tvtennhahang,tvdiachi,tvgia,tvgiomocua,tvgiodongcua;
+        public Button btndatbannow;
         public dsnhahangViewHolder(@NonNull View itemView) {
             super(itemView);
             imgnhahang = itemView.findViewById(R.id.imgnhahang);
@@ -60,6 +63,7 @@ public class dsnhahangAdapter  extends RecyclerView.Adapter<dsnhahangAdapter.dsn
             tvgia = itemView.findViewById(R.id.tvgia);
             tvgiomocua = itemView.findViewById(R.id.tvgiomocua);
             tvgiodongcua = itemView.findViewById(R.id.tvgiodongcua);
+            btndatbannow = itemView.findViewById(R.id.btndatbannow);
         }
     }
 }

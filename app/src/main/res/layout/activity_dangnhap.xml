@@ -17,8 +17,8 @@
         android:layout_margin="50dp"
         android:gravity="center"/>
 
-    <EditText
-        android:id="@+id/edtusername"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilsdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/signin"
@@ -26,35 +26,45 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
-        android:hint="Số điện thoại"
-        android:inputType="number"
-        android:maxLength="10"
-        android:padding="20dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        android:padding="0dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/white" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:layout_height="wrap_content"
+            android:background="#30ffffff"
+            android:hint="Nhập số điện thoại"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </EditText>
-
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edtusername"
+        android:layout_below="@id/tilsdt"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:drawableLeft="@drawable/ic_baseline_info_24"
-        android:drawablePadding="20dp"
-        android:hint="Mật khẩu"
-        android:inputType="textPassword"
-        android:padding="20dp"
+        app:passwordToggleEnabled="true"
+        android:padding="0dp"
+
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#fff"
+            android:background="#30ffffff"
+            android:textColor="#fff"
+            android:drawableLeft="@drawable/ic_baseline_info_24"
+            android:inputType="textPassword"
+            android:hint="Nhập mật khẩu"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"

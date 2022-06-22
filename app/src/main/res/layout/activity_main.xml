@@ -17,7 +17,7 @@
                 android:id="@+id/tbmhc"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Trang Chinh"
+                app:title="Trang chính"
                 android:background="#BFACC3">
             </androidx.appcompat.widget.Toolbar>
             <ViewFlipper
@@ -35,7 +35,7 @@
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:layout_margin="5dp"
-                    android:text="Mon An "
+                    android:text="Danh sách món ăn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -56,7 +56,7 @@
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:layout_margin="5dp"
-                    android:text="Nha Hang "
+                    android:text="Danh sách nhà hàng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <androidx.recyclerview.widget.RecyclerView
